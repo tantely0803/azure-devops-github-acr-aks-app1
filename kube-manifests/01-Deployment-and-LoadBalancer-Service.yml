@@ -19,3 +19,17 @@ spec:
           image: acrforaksdemo.azurecr.io/custom2aksnginxapp1
           ports:
             - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-nginx-loadbalancer-service
+  labels:
+    app: app1-nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: app1-nginx
+  ports:
+    - port: 80
+      targetPort: 80
